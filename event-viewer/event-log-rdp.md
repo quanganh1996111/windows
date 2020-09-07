@@ -73,3 +73,75 @@ Ta Click đúp chuột vào một Event bất kỳ ta sẽ thấy một số th�
 - Event ID `140`: Để xem IP đã Remote Desktop thất bại.
 
 - Event ID `4625`: Để xem các thông tin liên quan khác
+
+#### Để kiểm tra IP đã Remote Desktop thất bại tới Máy chủ Windows
+
+Trong Event Viewer chọn `Applications and Services Logs > Microsoft > Windows > RemoteDesktopServices-RdpCoreTS > Operational` ở cửa sổ bên trái.
+
+<img src="https://imgur.com/uIrGxpE.png">
+
+Ở cửa sổ bên phải -> Nhấn chuột chọn trường `Filter Current Log`.
+
+Ta thêm Event ID `140`:
+
+<img src="https://imgur.com/suZ8Ruy.png">
+
+Bây giờ, Trình xem sự kiện (Event Viewer ) sẽ chỉ hiển thị các sự kiện liên quan đến Remote Desktop thất bại:
+
+<img src="https://imgur.com/9vs4lm6.png">
+
+<img src="https://imgur.com/KE8AQm2.png">
+
+Trong đó:
+
+- Event ID: 140
+
+- Log Name: Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
+
+- phần bản tin: A connection from the client computer with an IP address of 192.168.182.1 failed because the user name or password is not correct.
+
+- logged: 12/24/2019 5:02:36 PM
+
+- level: Warning
+
+- Computer: Tên máy tính được đăng nhập
+
+#### Tìm tên User được nhập lúc Remote Desktop thất bại tới máy Chủ Windows Server
+
+Trong Event Viewer chọn `Windows Logs -> Security` ở cửa sổ bên trái
+
+Ở cửa sổ bên phải -> Nhấn chuột chọn trường `Filter Current Log`.
+
+Trong hộp thoại tiếp theo, nhập Event ID `4625`
+
+<img src="https://imgur.com/SLImOVE.png">
+
+Ta Click đúp vào một Event bất kỳ để theo dõi chi tiết Event đó:
+
+<img src="https://imgur.com/DhUenQu.png">
+
+Trong đó: 
+
+- Event ID: là ID sự kiện
+
+- Log Name: Tên bản tin log
+
+- Account Name: Tên user
+
+- phần bản tin: là bản tin log
+
+- logged: thời gian xuất hiện sự kiện
+
+- level: mức độ cảnh báo
+
+- Computer: Tên máy tính được đăng nhập
+
+- Chú ý: Có thêm phần Account Name
+
+## Kết luận
+
+Như vậy trong bài viết này chúng ta đã cùng nhau tìm hiểu và cách thức sử dụng công cụ Event Viewer để tìm nhật ký Remote Desktop đối với những lần Remote thất bại , Remote Sai User hoặc password trong Windows, quan trọng hơn là cách tìm địa chỉ ip đã đăng nhập sai để tiến hành khoanh vùng thực hiện các biện pháp xử lý.
+
+## Tài liệu tham khảo
+
+https://news.cloud365.vn/huong-dan-kiem-tra-log-remote-desktop-tren-windows/
